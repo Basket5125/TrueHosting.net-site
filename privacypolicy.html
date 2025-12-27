@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka Prywatności - TrueHosting.net</title>
+    <link rel="icon" type="image/x-icon" href="https://panel.truehosting.net/storage/ydzu7h67AB1UCja10MBxJEA6uy8DVbyOArZNvvSd.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* GLOBALNE STYLE - takie same jak na głównej stronie */
+        :root {
+            --primary-purple: #8B5CF6;
+            --secondary-purple: #7C3AED;
+            --dark-purple: #6D28D9;
+            --light-purple: #A78BFA;
+            --pink: #EC4899;
+            --light-pink: #F472B6;
+            --white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --lighter-gray: #F1F5F9;
+            --dark-gray: #1F2937;
+            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--pink) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--light-purple) 0%, var(--light-pink) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark-purple) 0%, #BE185D 100%);
+            --gradient-light: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            --shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+            --shadow-hover: 0 20px 40px rgba(139, 92, 246, 0.25);
+            --shadow-large: 0 25px 50px rgba(139, 92, 246, 0.2);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --transition-slow: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            background: var(--light-gray);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* ANIMACJE */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* TŁO Z ANIMOWANYM GRADIENTEM */
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(-45deg, #8B5CF6, #7C3AED, #EC4899, #F472B6);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.03;
+        }
+        
+        /* DEKORACYJNE ELEMENTY */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            opacity: 0.05;
+            filter: blur(40px);
+        }
+        
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+            transition: var(--transition);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img {
+            height: 50px;
+            width: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+            transition: var(--transition);
+        }
+        
+        .logo-container:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            font-size: 0.8rem;
+            color: var(--light-purple);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-main);
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-dark);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+        
+        .hero h2 span {
+            background: linear-gradient(90deg, #FCD34D, #F472B6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* MAIN CONTENT */
+        main {
+            background: var(--white);
+            max-width: 1200px;
+            margin: -50px auto 50px;
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-large);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .policy-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        .policy-content h3 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--dark-purple);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid;
+            border-image: var(--gradient-main) 1;
+        }
+        
+        .policy-content h4 {
+            font-size: 1.3rem;
+            margin: 1.8rem 0 0.8rem;
+            color: var(--primary-purple);
+        }
+        
+        .policy-content p {
+            margin-bottom: 1.2rem;
+            color: var(--dark-gray);
+        }
+        
+        .policy-content ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        
+        .policy-content ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .policy-content ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-purple);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .policy-content a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .policy-content a:hover {
+            border-bottom: 1px solid var(--primary-purple);
+        }
+        
+        .highlight-box {
+            background: var(--gradient-light);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid var(--primary-purple);
+        }
+        
+        .update-date {
+            display: inline-block;
+            background: var(--gradient-light);
+            color: var(--dark-purple);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-main);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-main);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--gradient-main);
+            transform: translateY(-5px);
+        }
+        
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 1024px) {
+            main {
+                padding: 3rem;
+                margin: -30px 20px 30px;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            main {
+                padding: 2rem;
+                margin: -20px 15px 20px;
+            }
+            
+            .hero {
+                padding: 4rem 1rem 3rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .policy-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+        
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-main);
+            border-radius: 6px;
+            border: 3px solid var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-purple);
+        }
+    </style>
+</head>
+<body>
+    <!-- TŁO I DEKORACJE -->
+    <div id="background"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://truehosting.net/logo.png" alt="Logo TrueHosting">
+            <div class="logo-text">
+                <h1>TrueHosting.net</h1>
+                <span>Polityka Prywatności</span>
+            </div>
+        </a>
+        
+        <a href="https://panel.truehosting.net" class="btn-primary">
+            <i class="fa-solid fa-right-to-bracket"></i> Otwórz Panel
+        </a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2><i class="fas fa-shield-alt"></i> Polityka Prywatności</h2>
+            <p>Zapoznaj się z naszą Polityką Prywatności Serwisu TrueHosting.net</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="policy-content">
+            <div class="update-date">
+                <i class="fas fa-calendar-alt"></i> Data ostatniej aktualizacji: 17.12.2025
+            </div>
+            
+            <p>Witaj w TrueHosting.net! Twoja prywatność jest dla nas priorytetem. W tym dokumencie znajdziesz informacje o tym, jak gromadzimy, wykorzystujemy i chronimy Twoje dane osobowe podczas korzystania z naszego serwisu internetowego dostępnego pod adresem truehosting.net.</p>
+            
+            <h3>1. Administrator Twoich Danych</h3>
+            <ul>
+                <li>Administratorem Twoich danych osobowych, czyli podmiotem decydującym o celach i sposobach ich przetwarzania, jest Basket5125.</li>
+                <li>Prowadzę niezarejestrowaną działalność gospodarczą.</li>
+                <li>Możesz się ze mną skontaktować mailowo: <a href="mailto:support@truehosting.net">support@truehosting.net</a> (lub <a href="mailto:basket5125@gmail.com">basket5125@gmail.com</a>).</li>
+            </ul>
+            
+            <h3>2. Podstawa Prawna Przetwarzania Danych</h3>
+            <p>Wszystkie działania związane z Twoimi danymi osobowymi są prowadzone w oparciu o obowiązujące przepisy prawa, przede wszystkim Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE, znane jako „RODO".</p>
+            
+            <h3>3. Jakie Dane Zbieramy, Po Co i Na Jakiej Podstawie?</h3>
+            <h4>Zakładanie i Zarządzanie Kontem w Serwisie:</h4>
+            <div class="highlight-box">
+                <p><strong>Cel:</strong> Umożliwienie Ci stworzenia osobistego konta i korzystania z jego funkcjonalności.</p>
+                <p><strong>Podstawa prawna:</strong> Niezbędność do wykonania umowy o świadczenie usług drogą elektroniczną (art. 6 ust. 1 lit. b RODO).</p>
+                <p><strong>Zakres danych:</strong> Imię i nazwisko, unikalny login, adres e-mail.</p>
+            </div>
+            
+            <h4>Realizacja Zamówień:</h4>
+            <div class="highlight-box">
+                <p><strong>Cel:</strong> Wykonanie zawartej z Tobą umowy sprzedaży lub umowy o świadczenie usług.</p>
+                <p><strong>Podstawa prawna:</strong> Niezbędność do wykonania umowy (art. 6 ust. 1 lit. b RODO).</p>
+                <p><strong>Zakres danych:</strong> Imię i nazwisko, adres e-mail, numer telefonu kontaktowego.</p>
+            </div>
+            
+            <h4>Kontakt za Pośrednictwem Formularza:</h4>
+            <div class="highlight-box">
+                <p><strong>Cel:</strong> Udzielenie odpowiedzi na Twoje zapytania i zapewnienie wsparcia.</p>
+                <p><strong>Podstawa prawna:</strong> Nasz prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO).</p>
+            </div>
+            
+            <h3>4. Jak Długo Przechowujemy Twoje Dane?</h3>
+            <ul>
+                <li><strong>Dane związane z umową:</strong> Przez okres niezbędny do jej realizacji, a po jej zakończeniu – przez czas odpowiadający terminom przedawnienia roszczeń (standardowo 6 lat).</li>
+                <li><strong>Dane przetwarzane na podstawie zgody:</strong> Do momentu jej wycofania.</li>
+            </ul>
+            
+            <h3>5. Czy Musisz Podawać Swoje Dane?</h3>
+            <p>Podanie danych osobowych jest zawsze dobrowolne. Jednak w niektórych sytuacjach, np. gdy chcesz założyć konto lub złożyć zamówienie, ich podanie jest konieczne do zawarcia i realizacji umowy lub świadczenia usługi.</p>
+            
+            <h3>6. Nasze Zobowiązanie do Ochrony Danych</h3>
+            <p>Przykładamy najwyższą wagę do ochrony Twoich danych. Gwarantujemy, że zbierane przez nas informacje są:</p>
+            <ul>
+                <li>przetwarzane zgodnie z literą prawa,</li>
+                <li>gromadzone wyłącznie w jasno określonych, legalnych celach,</li>
+                <li>poprawne merytorycznie i adekwatne do celów,</li>
+                <li>przechowywane tylko tak długo, jak jest to konieczne.</li>
+            </ul>
+            
+            <h3>7. Komu Możemy Powierzyć Twoje Dane?</h3>
+            <p>Aby sprawnie prowadzić Serwis i realizować usługi, współpracujemy z zewnętrznymi podmiotami:</p>
+            <ul>
+                <li>operatorzy płatności online,</li>
+                <li>dostawca usług hostingowych,</li>
+                <li>dostawcy oprogramowania i narzędzi IT.</li>
+            </ul>
+            
+            <h3>8. Twoje Prawa – Masz Kontrolę Nad Swoimi Danymi</h3>
+            <p>W odniesieniu do swoich danych osobowych przysługują Ci konkretne prawa:</p>
+            <ul>
+                <li>prawo do uzyskania dostępu do swoich danych,</li>
+                <li>prawo do ich sprostowania (poprawienia),</li>
+                <li>prawo do usunięcia danych (tzw. „prawo do bycia zapomnianym"),</li>
+                <li>prawo do ograniczenia ich przetwarzania,</li>
+                <li>prawo do przenoszenia danych do innego administratora,</li>
+                <li>prawo do wniesienia sprzeciwu wobec przetwarzania danych,</li>
+                <li>prawo do wycofania udzielonej zgody w dowolnym momencie.</li>
+            </ul>
+            
+            <h3>9. Ciasteczka (Pliki Cookies)</h3>
+            <p>Nasz Serwis wykorzystuje pliki cookies („ciasteczka"). Są to małe pliki tekstowe zapisywane na Twoim urządzeniu.</p>
+            <div class="highlight-box">
+                <p><strong>Po co nam cookies?</strong> Są nam potrzebne do zapewnienia prawidłowego działania Serwisu oraz zbierania anonimowych danych statystycznych.</p>
+                <p><strong>Jak możesz zarządzać ciasteczkami?</strong> W ustawieniach swojej przeglądarki możesz je blokować, usuwać lub skonfigurować powiadomienia.</p>
+            </div>
+            
+            <h3>10. Wtyczki Społecznościowe i Inne Narzędzia</h3>
+            <p>W naszym Serwisie możesz znaleźć wtyczki społecznościowe. Szczegółowe informacje o przetwarzaniu danych przez dostawców znajdziesz w ich politykach prywatności:</p>
+            <ul>
+                <li><a href="https://www.facebook.com/policy.php" target="_blank">Facebook: Polityka prywatności</a></li>
+                <li><a href="https://policies.google.com/privacy?hl=pl&gl=ZZ" target="_blank">Google: Polityka prywatności</a></li>
+            </ul>
+            
+            <h3>11. Bezpieczeństwo Twoich Płatności</h3>
+            <p>Bezpieczeństwo Twoich transakcji finansowych jest dla nas bardzo ważne. Kiedy płacisz online w naszym Serwisie, dane dotyczące Twojej karty płatniczej nie są przez nas gromadzone ani przechowywane. Cały proces płatności obsługiwany jest przez wyspecjalizowanych operatorów.</p>
+            
+            <h3>12. Zapisy Końcowe</h3>
+            <p>Zastrzegamy sobie prawo do dokonywania zmian w niniejszej Polityce Prywatności. O wszelkich modyfikacjach będziemy informować bezpośrednio na stronie Serwisu.</p>
+            
+            <div style="background: var(--gradient-main); color: white; padding: 2rem; border-radius: 20px; margin-top: 3rem; text-align: center;">
+                <h4 style="color: white; margin-bottom: 1rem;"><i class="fas fa-question-circle"></i> Masz pytania?</h4>
+                <p>Skontaktuj się z nami! Chętnie odpowiemy na wszystkie Twoje wątpliwości.</p>
+                <a href="mailto:support@truehosting.net" style="color: white; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+                    <i class="fas fa-envelope"></i> support@truehosting.net
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>TrueHosting.net</h3>
+                <p style="opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.6;">Profesjonalny Hosting serwerów Minecraft oraz aplikacji lub botów w node js</p>
+                <div class="social-links">
+                    <a href="https://discord.gg/cPMxyWvMzJ" class="social-link" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC5sZgJO27gyJyM42e5RC1LA" class="social-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@truehosting" class="social-link" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Usługi</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#free-server"><i class="fas fa-chevron-right"></i> Darmowy hosting</a></li>
+                    <li><a href="index.html#coins"><i class="fas fa-chevron-right"></i> System coinów</a></li>
+                    <li><a href="index.html#how-it-works"><i class="fas fa-chevron-right"></i> Jak to działa?</a></li>
+                    <li><a href="index.html#features"><i class="fas fa-chevron-right"></i> Funkcje</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Wsparcie</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#faq"><i class="fas fa-chevron-right"></i> Centrum pomocy</a></li>
+                    <li><a href="mailto:basket5125@gmail.com"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Polityka prywatności</a></li>
+                    <li><a href="regulamin.html"><i class="fas fa-chevron-right"></i> Regulamin</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontakt</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:basket5125@gmail.com"><i class="fas fa-envelope"></i> basket5125@gmail.com</a></li>
+                    <li><a href="index.html"><i class="fas fa-globe"></i> www.truehosting.net</a></li>
+                    <li style="margin-top: 1.5rem; opacity: 0.8;">
+                        <i class="fas fa-clock"></i> Wsparcie 24/7
+                    </li>
+                    <li style="opacity: 0.8;">
+                        <i class="fas fa-server"></i> Serwery w Polsce
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 TrueHosting.net – Wszystkie prawa zastrzeżone | Hosting serwerów Minecraft</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Nie jesteśmy powiązani z Mojang AB. Minecraft jest znakiem towarowym Mojang AB.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Płynne przewijanie do sekcji
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#' || href.startsWith('#!')) return;
+                
+                if (href.includes('index.html')) {
+                    // Pozwól na normalną nawigację do index.html
+                    return;
+                }
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animacja pojawiania się treści
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Obserwuj sekcje w głównej treści
+            document.querySelectorAll('.policy-content h3, .policy-content h4, .highlight-box').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

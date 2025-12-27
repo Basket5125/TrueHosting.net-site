@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5300426080255530"
+  crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueHosting.net - Wydajny Hosting serwerów Minecraft</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="effect.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>  
+  <div id="background" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></div>
+  <!-- najpierw biblioteka Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <!-- potem vanta.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+  <amp-auto-ads type="adsense"
+        data-ad-client="ca-pub-5300426080255530">
+  </amp-auto-ads>
+  <!-- a tu konfiguracja -->
+  <script>
+    VANTA.WAVES({
+      el: "#background",
+      mouseControls: true,
+      touchControls: true,
+      color: 0x1e40af,
+      waveHeight: 20,
+      waveSpeed: 1.5
+    })
+  </script>
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 bg-white shadow-md">
+    <a href="index.html">
+    <h1 class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+      <i class="fa-solid fa-server"></i> TrueHosting.net
+    </h1>
+    </a>  
+    <a href="https://panel.truehosting.net" 
+       class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+       <i class="fa-solid fa-right-to-bracket"></i> Otwórz Panel
+    </a>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-center py-16 from-blue-600 to-indigo-700 text-white">
+    <h2 class="text-5xl font-bold mb-4 animate-fade-in">Profesjonalny i wydajny hosting</h2>
+    <p class="max-w-2xl mx-auto text-lg animate-fade-in-up">
+      TrueHosting.net to szybki i niezawodny hosting serwerów Minecraft oraz innych aplikacji.
+      Oferujemy możliwość wgrywania własnych silników i pluginów oraz zawsze chętną do pomocy obsługę techniczną.
+      Nasze serwery są oparte o Wydajne procesory Intel Xeon oraz Duże ilości pamięci RAM przez co są w stanie sprostać nawet najbardziej wymagającym klientom.
+      Posiadamy też pakiet Darmowy dla mniej wymagających użytkowników, jest on idealny do wspólnej gry survival ze znajomymi lub dla osób zaczynających tworzenie serwerów Minecraft.
+    </p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5300426080255530"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-5300426080255530"
+     data-ad-slot="5749886903"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </section>
+
+  <!-- Pakiety -->
+  <section class="py-16 px-6 max-w-6xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-10">Wybierz pakiet najlepiej pasujący do twoich potrzeb</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Darmowy -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-200 hover:shadow-xl transition transform hover:-translate-y-2">
+        <h4 class="text-2xl font-bold text-blue-600 mb-4">
+          <i class="fa-solid fa-cube"></i> Darmowy
+        </h4>
+        <p class="text-gray-600 mb-6">Idealny dla początkujących graczy i małych serwerów.</p>
+        <ul class="space-y-2 mb-6 text-gray-700 text-left max-w-xs mx-auto">
+          <li>✅ 3,5 GB RAM</li>
+          <li>✅ 3 rdzenie procesora</li>
+          <li>✅ 10 GB dysku</li>
+          <li>✅ Wgrywanie własnych pluginów i silników</li>
+          <li>✅ Podstawowa pomoc techniczna</li>
+          <li>✅ Do około 80 Graczy</li>          
+        </ul>
+        <a href="instruction-free.html">
+        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+          <i class="fa-solid fa-download"></i> Wybierz Darmowy
+        </button>
+        </a>  
+      </div>
+
+      <!-- Premium -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-blue-600 hover:shadow-xl transition transform hover:-translate-y-2">
+        <h4 class="text-2xl font-bold text-indigo-700 mb-4">
+          <i class="fa-solid fa-gem"></i> Premium 90 PLN/Rok (Wkrótce)
+        </h4>
+        <p class="text-gray-600 mb-6">Dla wymagających użytkowników i profesjonalnych serwerów. (Wymagane jest konto na Oficajnym sklepie TrueHosting.)</p>
+        <ul class="space-y-2 mb-6 text-gray-700 text-left max-w-xs mx-auto">
+          <li>🚀 4,5 GB RAM</li>
+          <li>🚀 4 rdzenie procesora</li>
+          <li>🚀 15 GB dysku</li>
+          <li>🚀 Wgrywanie własnych pluginów i silników</li>
+          <li>🚀 Priorytetowa pomoc techniczna</li>
+          <li>🚀 Do około 250 graczy</li>
+        </ul>
+       <a href="https://sklep.truehosting.net">
+        <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+          <i class="fa-solid fa-crown"></i> Wybierz Premium
+        </button>
+      </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-gray-100 text-gray-600">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5300426080255530"
+     crossorigin="anonymous"></script>
+<!-- footer -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5300426080255530"
+     data-ad-slot="3092450895"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    © 2025 TrueHosting.net – Wszystkie prawa zastrzeżone
+  </footer>
+  </body>
+  <!-- Animacje Tailwind -->
+  <style>
+    .animate-fade-in {
+      animation: fadeIn 2.5s ease-in-out;
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+</body>
+</html>

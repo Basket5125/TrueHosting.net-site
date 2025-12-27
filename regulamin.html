@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin - TrueHosting.net</title>
+    <link rel="icon" type="image/x-icon" href="https://panel.truehosting.net/storage/ydzu7h67AB1UCja10MBxJEA6uy8DVbyOArZNvvSd.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* GLOBALNE STYLE - takie same jak na głównej stronie */
+        :root {
+            --primary-purple: #8B5CF6;
+            --secondary-purple: #7C3AED;
+            --dark-purple: #6D28D9;
+            --light-purple: #A78BFA;
+            --pink: #EC4899;
+            --light-pink: #F472B6;
+            --white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --lighter-gray: #F1F5F9;
+            --dark-gray: #1F2937;
+            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--pink) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--light-purple) 0%, var(--light-pink) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark-purple) 0%, #BE185D 100%);
+            --gradient-light: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            --shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+            --shadow-hover: 0 20px 40px rgba(139, 92, 246, 0.25);
+            --shadow-large: 0 25px 50px rgba(139, 92, 246, 0.2);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --transition-slow: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            background: var(--light-gray);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* ANIMACJE */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* TŁO Z ANIMOWANYM GRADIENTEM */
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(-45deg, #8B5CF6, #7C3AED, #EC4899, #F472B6);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.03;
+        }
+        
+        /* DEKORACYJNE ELEMENTY */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            opacity: 0.05;
+            filter: blur(40px);
+        }
+        
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+            transition: var(--transition);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img {
+            height: 50px;
+            width: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+            transition: var(--transition);
+        }
+        
+        .logo-container:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            font-size: 0.8rem;
+            color: var(--light-purple);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-main);
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-dark);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+        
+        .hero h2 span {
+            background: linear-gradient(90deg, #FCD34D, #F472B6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* MAIN CONTENT */
+        main {
+            background: var(--white);
+            max-width: 1200px;
+            margin: -50px auto 50px;
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-large);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .terms-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        .terms-content h3 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--dark-purple);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid;
+            border-image: var(--gradient-main) 1;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .terms-content h3 i {
+            color: var(--primary-purple);
+        }
+        
+        .terms-content p {
+            margin-bottom: 1.2rem;
+            color: var(--dark-gray);
+        }
+        
+        .terms-content ul {
+            list-style: none;
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        
+        .terms-content ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+        }
+        
+        .terms-content ul li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-purple);
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .terms-content ul ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .terms-content ul ul li:before {
+            content: '○';
+            font-size: 1rem;
+        }
+        
+        .terms-content a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .terms-content a:hover {
+            border-bottom: 1px solid var(--primary-purple);
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid #F59E0B;
+        }
+        
+        .warning-box h4 {
+            color: #92400E;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .important-box {
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid #DC2626;
+        }
+        
+        .important-box h4 {
+            color: #991B1B;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-main);
+            color: white;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-right: 0.8rem;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-main);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-main);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--gradient-main);
+            transform: translateY(-5px);
+        }
+        
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 1024px) {
+            main {
+                padding: 3rem;
+                margin: -30px 20px 30px;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .terms-content h3 {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            main {
+                padding: 2rem;
+                margin: -20px 15px 20px;
+            }
+            
+            .hero {
+                padding: 4rem 1rem 3rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .terms-content h3 {
+                font-size: 1.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-number {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+        
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-main);
+            border-radius: 6px;
+            border: 3px solid var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-purple);
+        }
+    </style>
+</head>
+<body>
+    <!-- TŁO I DEKORACJE -->
+    <div id="background"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://truehosting.net/logo.png" alt="Logo TrueHosting">
+            <div class="logo-text">
+                <h1>TrueHosting.net</h1>
+                <span>Regulamin Hostingu</span>
+            </div>
+        </a>
+        
+        <a href="https://panel.truehosting.net" class="btn-primary">
+            <i class="fa-solid fa-right-to-bracket"></i> Otwórz Panel
+        </a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2><i class="fas fa-scroll"></i> Regulamin Hostingu</h2>
+            <p>Zapoznaj się z zasadami korzystania z hostingu serwerów TrueHosting.net</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="terms-content">
+            <div class="important-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Ważna informacja</h4>
+                <p>Korzystając z usług TrueHosting.net, akceptujesz niniejszy regulamin w całości. Administrator zastrzega sobie prawo do zmiany regulaminu w dowolnym momencie bez wcześniejszego powiadomienia.</p>
+            </div>
+            
+            <h3><span class="section-number">§1</span> Postanowienia ogólne</h3>
+            <ul>
+                <li>Administratorem Hostingu TrueHosting jest Basket5125. Kontakt możliwy przez maila <a href="mailto:basket5125@gmail.com">basket5125@gmail.com</a> lub discorda <strong>_basket5125</strong>.</li>
+                <li>Niniejszy regulamin określa zasady korzystania z hostingu serwerów Minecraft ("TrueHosting") udostępnianego przez Administratora i zespół serwera truecraft.ddns.net.</li>
+                <li>Każdy użytkownik korzystający z Hostingu zobowiązuje się do przestrzegania postanowień niniejszego regulaminu.</li>
+            </ul>
+            
+            <h3><span class="section-number">§2</span> Działanie i utrzymanie usług</h3>
+            <ul>
+                <li>Administrator dokłada wszelkich starań, aby Hosting działał nieprzerwanie i stabilnie.</li>
+                <li>Administrator zastrzega sobie prawo do:
+                    <ul>
+                        <li>czasowego wyłączenia usług w celu napraw, konserwacji, aktualizacji lub ulepszeń technicznych,</li>
+                        <li>całkowitego wyłączenia Hostingu po wcześniejszym poinformowaniu wszystkich użytkowników aktywnych w ciągu ostatnich 30 dni.</li>
+                    </ul>
+                </li>
+                <li>W przypadku awarii, ataku hakerskiego, błędu systemowego lub braku zasilania, działanie usług może zostać wstrzymane.</li>
+                <li>Administrator nie ponosi odpowiedzialności za skutki przerw w działaniu wynikające z przyczyn niezależnych od niego.</li>
+            </ul>
+            
+            <h3><span class="section-number">§3</span> Dane i bezpieczeństwo</h3>
+            <ul>
+                <li>Administrator dba o bezpieczeństwo danych.</li>
+                <li>Mimo to może dojść do utraty danych w wyniku:
+                    <ul>
+                        <li>awarii sprzętu,</li>
+                        <li>ataków hakerskich,</li>
+                        <li>uszkodzenia nośnika danych.</li>
+                    </ul>
+                </li>
+                <li>Dane użytkowników nie są usuwane celowo, chyba że wymaga tego regulamin lub prawo.</li>
+            </ul>
+            
+            <h3><span class="section-number">§4</span> Dostęp Administratora</h3>
+            <ul>
+                <li>Administrator może uzyskać dostęp do serwera w celu:
+                    <ul>
+                        <li>rozwiązania problemu technicznego,</li>
+                        <li>weryfikacji zgłoszenia naruszenia regulaminu,</li>
+                        <li>sprawdzenia podejrzenia działalności nielegalnej.</li>
+                    </ul>
+                </li>
+                <li>Administrator zachowuje poufność wszelkich danych użytkownika.</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4><i class="fas fa-shield-alt"></i> Bezpieczeństwo danych</h4>
+                <p>Wszystkie dane są przechowywane na zabezpieczonych serwerach. Administrator ma dostęp do serwerów tylko w celach technicznych i administracyjnych.</p>
+            </div>
+            
+            <h3><span class="section-number">§5</span> Zasady korzystania</h3>
+            <ul>
+                <li>Użytkownik zobowiązany jest korzystać z usług zgodnie z ich przeznaczeniem.</li>
+                <li>Zakazuje się m.in.:
+                    <ul>
+                        <li>modyfikowania kodu panelu,</li>
+                        <li>omijania limitów zasobów,</li>
+                        <li>uruchamiania nieautoryzowanych aplikacji lub kontenerów,</li>
+                        <li>hakowania, łamania haseł i podobnych działań,</li>
+                        <li>tworzenia wielu kont w celu obejścia ograniczeń,</li>
+                        <li>sprzedaży lub odsprzedaży serwerów bez zgody Administratora.</li>
+                    </ul>
+                </li>
+                <li>Naruszenie zasad skutkuje blokadą konta lub serwera.</li>
+            </ul>
+            
+            <h3><span class="section-number">§6</span> Serwery i zasoby</h3>
+            <ul>
+                <li>Limity zasobów mogą nieznacznie się różnić od podanych na stronie ze względów technicznych.</li>
+                <li>W przypadku przeciążenia lub braku zasobów Administrator może ograniczyć dostępność serwerów lub czasowo je wyłączyć.</li>
+                <li>Panel może działać wolniej w godzinach szczytu (powyżej 30 aktywnych serwerów).</li>
+            </ul>
+            
+            <h3><span class="section-number">§7</span> Silniki serwerów</h3>
+            <ul>
+                <li>Dozwolone są wyłącznie serwery Minecraft.</li>
+                <li>Uruchamianie innych silników lub aplikacji skutkuje blokadą konta.</li>
+            </ul>
+            
+            <h3><span class="section-number">§8</span> Domeny</h3>
+            <ul>
+                <li>Użytkownicy mogą korzystać z własnych domen.</li>
+            </ul>
+            
+            <h3><span class="section-number">§9</span> Sankcje</h3>
+            <ul>
+                <li>Za naruszenie regulaminu grozi blokada konta lub serwera.</li>
+                <li>Decyzje Administratora są ostateczne.</li>
+            </ul>
+            
+            <div class="important-box">
+                <h4><i class="fas fa-gavel"></i> Sankcje za naruszenia</h4>
+                <p>Każde naruszenie regulaminu może skutkować natychmiastową blokadą konta bez możliwości odwołania. W przypadku poważnych naruszeń Administrator może podjąć dodatkowe działania prawne.</p>
+            </div>
+            
+            <h3><span class="section-number">§10</span> Postanowienia końcowe</h3>
+            <ul>
+                <li>Korzystając z Hostingu, użytkownik akceptuje regulamin w całości.</li>
+                <li>W sprawach nieuregulowanych obowiązuje prawo polskie.</li>
+                <li>Administrator zastrzega sobie prawo do <strong>zmiany regulaminu w dowolnym momencie</strong> bez wcześniejszego powiadomienia.</li>
+            </ul>
+            
+            <div style="background: var(--gradient-light); border-radius: 20px; padding: 2rem; margin-top: 3rem; text-align: center;">
+                <h4 style="color: var(--dark-purple); margin-bottom: 1rem;"><i class="fas fa-file-contract"></i> Akceptacja regulaminu</h4>
+                <p style="margin-bottom: 1rem;">Rejestrując się na TrueHosting.net, użytkownik oświadcza, że zapoznał się z treścią regulaminu i akceptuje go w całości.</p>
+                <p style="font-weight: 600; color: var(--primary-purple);">
+                    <i class="fas fa-calendar-alt"></i> Data ostatniej aktualizacji: 17.12.2025
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>TrueHosting.net</h3>
+                <p style="opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.6;">Profesjonalny Hosting serwerów Minecraft oraz aplikacji lub botów w node js</p>
+                <div class="social-links">
+                    <a href="https://discord.gg/cPMxyWvMzJ" class="social-link" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC5sZgJO27gyJyM42e5RC1LA" class="social-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@truehosting" class="social-link" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Usługi</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#free-server"><i class="fas fa-chevron-right"></i> Darmowy hosting</a></li>
+                    <li><a href="index.html#coins"><i class="fas fa-chevron-right"></i> System coinów</a></li>
+                    <li><a href="index.html#how-it-works"><i class="fas fa-chevron-right"></i> Jak to działa?</a></li>
+                    <li><a href="index.html#features"><i class="fas fa-chevron-right"></i> Funkcje</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Wsparcie</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#faq"><i class="fas fa-chevron-right"></i> Centrum pomocy</a></li>
+                    <li><a href="mailto:basket5125@gmail.com"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
+                    <li><a href="privacypolicy.html"><i class="fas fa-chevron-right"></i> Polityka prywatności</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Regulamin</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontakt</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:basket5125@gmail.com"><i class="fas fa-envelope"></i> basket5125@gmail.com</a></li>
+                    <li><a href="index.html"><i class="fas fa-globe"></i> www.truehosting.net</a></li>
+                    <li style="margin-top: 1.5rem; opacity: 0.8;">
+                        <i class="fas fa-clock"></i> Wsparcie 24/7
+                    </li>
+                    <li style="opacity: 0.8;">
+                        <i class="fas fa-server"></i> Serwery w Polsce
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 TrueHosting.net – Wszystkie prawa zastrzeżone | Hosting serwerów Minecraft</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Nie jesteśmy powiązani z Mojang AB. Minecraft jest znakiem towarowym Mojang AB.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Płynne przewijanie do sekcji
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#' || href.startsWith('#!')) return;
+                
+                if (href.includes('index.html')) {
+                    // Pozwól na normalną nawigację do index.html
+                    return;
+                }
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animacja pojawiania się treści
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Obserwuj sekcje w głównej treści
+            document.querySelectorAll('.terms-content h3, .warning-box, .important-box').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

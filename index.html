@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueHosting.net - Darmowy Hosting serwerów Minecraft z Systemem Coinów</title>
+    <link rel="icon" type="image/x-icon" href="https://panel.truehosting.net/storage/ydzu7h67AB1UCja10MBxJEA6uy8DVbyOArZNvvSd.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* GLOBALNE STYLE */
+        :root {
+            --primary-purple: #8B5CF6;
+            --secondary-purple: #7C3AED;
+            --dark-purple: #6D28D9;
+            --light-purple: #A78BFA;
+            --pink: #EC4899;
+            --light-pink: #F472B6;
+            --white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --lighter-gray: #F1F5F9;
+            --dark-gray: #1F2937;
+            --gradient-main: linear-gradient(135deg, var(--primary-purple) 0%, var(--pink) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--light-purple) 0%, var(--light-pink) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark-purple) 0%, #BE185D 100%);
+            --gradient-light: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            --shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+            --shadow-hover: 0 20px 40px rgba(139, 92, 246, 0.25);
+            --shadow-large: 0 25px 50px rgba(139, 92, 246, 0.2);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --transition-slow: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            background: var(--light-gray);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* ANIMACJE */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(139, 92, 246, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* TŁO Z ANIMOWANYM GRADIENTEM */
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(-45deg, #8B5CF6, #7C3AED, #EC4899, #F472B6);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.03;
+        }
+        
+        /* DEKORACYJNE ELEMENTY */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            opacity: 0.05;
+            filter: blur(40px);
+        }
+        
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            right: 20%;
+            animation: float 18s ease-in-out infinite;
+        }
+        
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 0.8rem 3rem;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img {
+            height: 50px;
+            width: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+            transition: var(--transition);
+        }
+        
+        .logo-container:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            font-size: 0.8rem;
+            color: var(--light-purple);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+        
+        nav a:hover {
+            color: var(--primary-purple);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-main);
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-purple);
+            padding: 0.85rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+            border: 2px solid var(--primary-purple);
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+            cursor: pointer;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-dark);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+        
+        .hero h2 span {
+            background: linear-gradient(90deg, #FCD34D, #F472B6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #FFFFFF, #FBCFE8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s both;
+            flex-wrap: wrap;
+        }
+        
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-purple);
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline-white {
+            background: transparent;
+            border: 3px solid var(--white);
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        /* SECTIONS */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-main);
+            border-radius: 2px;
+        }
+        
+        /* HOW IT WORKS SECTION */
+        .how-it-works {
+            background: var(--lighter-gray);
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .step-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-main);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .step-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.3);
+        }
+        
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-purple);
+        }
+        
+        /* FEATURES SECTION */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient-main);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-secondary);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        .feature-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-purple);
+        }
+        
+        .feature-highlight {
+            background: var(--gradient-light);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            box-shadow: var(--shadow);
+        }
+        
+        /* SERVER COMPARISON */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+        
+        .server-plan {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .server-plan:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .server-plan.popular {
+            border-color: var(--primary-purple);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        
+        .server-plan.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .plan-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-main);
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .plan-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+        
+        .plan-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .plan-features li i {
+            color: var(--primary-purple);
+        }
+        
+        /* COINS SECTION */
+        .coins-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+        
+        .coin-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .coin-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .coin-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .coin-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+        }
+        
+        .coin-value {
+            display: inline-block;
+            background: var(--gradient-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            color: var(--dark-purple);
+        }
+        
+        /* TESTIMONIALS */
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 2.5rem;
+            padding: 2rem 1rem;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+        
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            min-width: 350px;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1.2rem;
+            color: var(--dark-purple);
+            margin-bottom: 0.3rem;
+        }
+        
+        .testimonial-rating {
+            color: #F59E0B;
+            font-size: 1rem;
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .faq-question {
+            padding: 1.8rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-purple);
+            background: var(--gradient-light);
+        }
+        
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 2rem;
+            max-height: 500px;
+        }
+        
+        /* COMMUNITY SECTION */
+        .community-section {
+            background: var(--gradient-light);
+            text-align: center;
+        }
+        
+        .community-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .community-stat {
+            text-align: center;
+        }
+        
+        .community-stat i {
+            font-size: 3rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .community-stat h3 {
+            font-size: 2.5rem;
+            color: var(--dark-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: var(--gradient-main);
+            color: white;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-main);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-main);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        /* COOKIE BANNER */
+        .cookie-banner {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-large);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+        
+        .cookie-banner.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .server-plan.popular {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding-top: 1rem;
+            }
+            
+            nav.show {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature-highlight {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-main);
+            border-radius: 6px;
+            border: 3px solid var(--light-gray);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-purple);
+        }
+    </style>
+</head>
+<body>
+    <!-- TŁO I DEKORACJE -->
+    <div id="background"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+           <!-- HEADER -->
+    <header id="mainHeader">
+        <div class="logo-container" href="#">
+            <img src="https://truehosting.net/logo.png" alt="Logo TrueHosting">
+            <div class="logo-text">
+                <h1>TrueHosting.net</h1>
+                <span>Profesjonalny Hosting serwerów Minecraft oraz aplikacji lub botów w node js</span>
+            </div>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav id="mainNav">
+            <a href="#features"><i class="fas fa-star"></i> Funkcje</a>
+            <a href="#how-it-works"><i class="fas fa-play-circle"></i> Jak to działa?</a>
+            <a href="#free-server"><i class="fas fa-server"></i> Darmowy Serwer</a>
+            <a href="#coins"><i class="fas fa-coins"></i> Coiny</a>
+            <a href="#testimonials"><i class="fas fa-comments"></i> Opinie</a>
+            <a href="#community"><i class="fas fa-users"></i> Społeczność</a>
+            <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+        </nav>
+        
+        <div class="nav-cta">
+            <a href="https://panel.truehosting.net/" class="btn-primary pulse">
+                <i class="fa-solid fa-right-to-bracket"></i> Otwórz Panel
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Hosting Minecraft<br><span>Nowej Generacji</span></h2>
+            <p>Dołącz do ponad 500 graczy którzy zaufali naszym usługom. Darmowy hosting z możliwością rozbudowy za pomocą coinów - graj bez limitów!</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Zadowolonych Graczy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Czasu Działania</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Wsparcie</div>
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#free-server" class="btn-white">
+                    <i class="fas fa-rocket"></i> Rozpocznij za darmo
+                </a>
+                <a href="#how-it-works" class="btn-outline-white">
+                    <i class="fas fa-play-circle"></i> Zobacz jak to działa
+                </a>
+                <a href="https://youtube.com" target="_blank" class="btn-outline-white">
+                    <i class="fab fa-youtube"></i> Obejrzyj demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAK TO DZIAŁA -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">Jak to działa?</h2>
+            <p class="section-subtitle">Wystarczą 4 proste kroki aby zacząć swoją przygodę z hostingiem Minecraft</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Zarejestruj się</h3>
+                <p>Załóż darmowe konto w naszym panelu.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Aktywuj serwer</h3>
+                <p>Po zalogowaniu stwórz swój darmowy serwer.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3>Skonfiguruj</h3>
+                <p>Dostosuj swój serwer do własnych potrzeb. Wgraj pluginy, mody, zmień ustawienia - pełna kontrola w Twoich rękach.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Zaproś znajomych</h3>
+                <p>Udostępnij IP serwera znajomym i rozpocznijcie wspólną przygodę w Minecraft.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" style="background: var(--white);">
+        <div class="section-header">
+            <h2 class="section-title">Dlaczego TrueHosting?</h2>
+            <p class="section-subtitle">Oferujemy unikalne rozwiązania stworzone specjalnie dla graczy Minecraft oraz osób potrzebujących hostingu botów discord lub aplikacji w node js</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h4>Niska latencja</h4>
+                <p>Serwery zlokalizowane w Polsce zapewniają ping poniżej 20ms dla graczy z Europy Środkowej.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Zaawansowane zabezpieczenia</h4>
+                <p>DDoS Protection, regularne backupy oraz system wykrywający podejrzane działania 24/7 chronią Twój serwer przed atakami.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h4>Wsparcie modów i pluginów</h4>
+                <p>Pełna kompatybilność z Bukkit, Spigot, Paper, Forge, Fabric i wszystkimi popularnymi modyfikacjami.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h4>Panel mobilny</h4>
+                <p>(soon)</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h4>Baza danych MySQL</h4>
+                <p>Darmowa baza danych dla każdego serwera do przechowywania danych pluginów i aplikacji.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h4>Automatyczne aktualizacje</h4>
+                <p>System automatycznie aktualizuje silnik Minecraft do najnowszej wersji, gdy tylko ta zostanie wydana.</p>
+            </div>
+        </div>
+        
+        <div class="feature-highlight">
+            <div style="flex: 1;">
+                <h3 style="font-size: 2rem; color: var(--dark-purple); margin-bottom: 1rem;">Pełna kontrola przez panel</h3>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Nasz intuicyjny panel umożliwia zarządzanie każdym aspektem serwera bez konieczności znajomości komend konsoli. Wszystko w jednym miejscu!</p>
+                <ul style="list-style: none;">
+                    <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.8rem;">
+                        <i class="fas fa-check-circle" style="color: var(--primary-purple);"></i>
+                        <span>Zarządzanie plikami przez przeglądarkę</span>
+                    </li>
+                    <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.8rem;">
+                        <i class="fas fa-check-circle" style="color: var(--primary-purple);"></i>
+                        <span>Konsola w czasie rzeczywistym</span>
+                    </li>
+                    <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.8rem;">
+                        <i class="fas fa-check-circle" style="color: var(--primary-purple);"></i>
+                        <span>Zaawansowane ustawienia wydajności</span>
+                    </li>
+                </ul>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <div style="background: var(--gradient-main); color: white; padding: 2rem; border-radius: 20px; display: inline-block;">
+                    <i class="fas fa-sliders-h" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                    <h4 style="font-size: 1.5rem;">Intuicyjny Panel</h4>
+                    <p>Łatwe zarządzanie nawet dla początkujących</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DARMOWY SERWER -->
+    <section id="free-server" style="background: linear-gradient(135deg, #F8FAFC 0%, #F3E8FF 100%);">
+        <div class="section-header">
+            <h2 class="section-title">Wybierz swój plan</h2>
+            <p class="section-subtitle">Rozpocznij za darmo i rozwijaj serwer w miarę potrzeb</p>
+        </div>
+        
+        <div class="comparison-grid">
+            <div class="server-plan">
+                <div class="plan-header">
+                    <div class="plan-name">Podstawowy</div>
+                    <div class="plan-price">0 PLN</div>
+                    <p>Idealny na start</p>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 3.5 GB RAM</li>
+                    <li><i class="fas fa-check"></i> 24/7</li>
+                    <li><i class="fas fa-check"></i> 10 GB dysku SSD</li>
+                    <li><i class="fas fa-check"></i> 300% CPU limit</li>
+                    <li><i class="fas fa-check"></i> 1 backup</li>
+                    <li><i class="fas fa-check"></i> 1 allokacja</li>
+                </ul>
+                <a href="https://dash.truehosting.net/" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">
+                    Rozpocznij za darmo
+                </a>
+            </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="font-size: 1.1rem; color: var(--dark-gray); margin-bottom: 1rem;">Wszystkie plany obejmują pełny dostęp do panelu, możliwość wgrywania własnych plików i 99% gwarancji czasu działania.</p>
+            <a href="#coins" style="color: var(--primary-purple); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-arrow-right"></i> Zobacz jak ulepszyć swój serwer za pomocą coinów
+            </a>
+        </div>
+    </section>
+
+    <!-- COINY -->
+    <section id="coins" style="background: var(--white);">
+        <div class="section-header">
+            <h2 class="section-title">System Coinów</h2>
+            <p class="section-subtitle">Kup coiny i używaj ich do ulepszania serwera bez miesięcznych zobowiązań</p>
+        </div>
+        
+        <div class="coins-grid">
+            <div class="coin-card">
+                <div class="coin-amount">100 Coinów</div>
+                <div class="coin-price">5 PLN</div>
+            </div>
+            
+            <div class="coin-card">
+                <div class="coin-amount">200 Coinów</div>
+                <div class="coin-price">10 PLN</div>
+            </div>
+            
+            <div class="coin-card">
+                <div class="coin-amount">400 Coinów</div>
+                <div class="coin-price">20 PLN</div>
+            </div>
+            
+            <div class="coin-card">
+                <div class="coin-amount">1000 Coinów</div>
+                <div class="coin-price">50 PLN</div>
+            </div>
+            
+            <div class="coin-card">
+                <div class="coin-amount">2500 Coinów</div>
+                <div class="coin-price">125 PLN</div>
+            </div>
+            
+            <div class="coin-card">
+                <div class="coin-amount">5000 Coinów</div>
+                <div class="coin-price">250 PLN</div>
+            </div>
+        </div>
+        
+        <div style="background: var(--gradient-light); border-radius: 20px; padding: 3rem; margin-top: 4rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4 style="color: var(--dark-purple); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                        <i class="fas fa-bolt" style="color: var(--primary-purple);"></i>
+                        Ulepsz RAM
+                    </h4>
+                    <p>+0.5 GB RAM = 200 coinów<br>+1 GB RAM = 350 coinów<br>+2 GB RAM = 600 coinów</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--dark-purple); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                        <i class="fas fa-hdd" style="color: var(--primary-purple);"></i>
+                        Zwiększ dysk
+                    </h4>
+                    <p>+5 GB dysku = 150 coinów<br>+10 GB dysku = 250 coinów<br>+25 GB dysku = 500 coinów</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--dark-purple); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+                        <i class="fas fa-microchip" style="color: var(--primary-purple);"></i>
+                        Dodaj CPU
+                    </h4>
+                    <p>+1 rdzeń CPU = 200 coinów<br>+2 rdzenie CPU = 350 coinów<br>+4 rdzenie CPU = 600 coinów</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="https://dash.truehosting.net/store" class="btn-primary" style="padding: 1.2rem 3rem; font-size: 1.2rem;">
+                <i class="fas fa-shopping-cart"></i> Przejdź do sklepu z coinami
+            </a>
+        </div>
+    </section>
+
+      <!-- OPINIE -->
+    <section id="testimonials" style="background: var(--lighter-gray);">
+        <div class="section-header">
+            <h2 class="section-title">Co mówią użytkownicy Hostingu</h2>
+            <p class="section-subtitle">Dołącz do społeczności zadowolonych użytkowników TrueHosting</p>
+        </div>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: var(--gradient-main);">XS</div>
+                        <div class="testimonial-info">
+                            <h4>xStiveczek</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Korzystam od 6 miesięcy i nie mogę narzekać. Serwery działają płynnie, <br>support odpowiada w ciągu kilku minut. Polecam każdemu kto szuka dobrego hostingu Minecraft!"</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: var(--gradient-secondary);">MK</div>
+                        <div class="testimonial-info">
+                            <h4>MinecraftKing</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"good hosting, free, administration will help on discord ."</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #F59E0B, #EC4899);">DT</div>
+                        <div class="testimonial-info">
+                            <h4>diler_trzciny</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Kupujcie coiny"</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10B981, #3B82F6);">K1</div>
+                        <div class="testimonial-info">
+                            <h4>!Kacperino1</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Przeszedłem z 3 różnych hostingów i tutaj zostałem na stałe. Darmowy i działający."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPOŁECZNOŚĆ -->
+    <section id="community" class="community-section">
+        <div class="section-header">
+            <h2 class="section-title">Dołącz do społeczności</h2>
+            <p class="section-subtitle">Połącz się z setkami użytkowników Hostingu na naszych platformach społecznościowych</p>
+        </div>
+        
+        <div class="community-stats">
+            <div class="community-stat">
+                <i class="fab fa-discord"></i>
+                <h3>60+</h3>
+                <p>Członków na Discordzie</p>
+            </div>
+            <div class="community-stat">
+                <i class="fab fa-youtube"></i>
+                <h3>12+</h3>
+                <p>Subskrybentów YouTube</p>
+            </div>
+            <div class="community-stat">
+                <i class="fas fa-users"></i>
+                <h3>500+</h3>
+                <p>Zarejestrowanych graczy</p>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://discord.gg/cPMxyWvMzJ" class="social-link" target="_blank">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UC5sZgJO27gyJyM42e5RC1LA" class="social-link" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.tiktok.com/@truehosting" class="social-link" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="background: var(--white);">
+        <div class="section-header">
+            <h2 class="section-title">Często zadawane pytania</h2>
+            <p class="section-subtitle">Znajdź odpowiedzi na najczęstsze pytania o nasze usługi</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Czy mogę zmienić plan serwera w dowolnym momencie?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Tak! Dzięki systemowi coinów możesz w dowolnym momencie dodać więcej RAM, dysku lub CPU do swojego serwera. Wystarczy, że posiadasz odpowiednią ilość coinów na koncie.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Jak długo ważny jest darmowy serwer?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Darmowy serwer jest aktywny przez 30 dni od utworzenia. Po tym czasie możesz go przedłużyć za 130 coinów lub przenieść pliki na nowy darmowy serwer.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Czy oferujecie pomoc w konfiguracji serwera?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Tak! Nasz zespół wsparcia pomaga w podstawowej konfiguracji serwera. Dla bardziej zaawansowanych ustawień oferujemy płatne usługi konfiguracyjne.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Jak mogę zdobyć dodatkowe coiny za darmo?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Organizujemy regularne konkursy i tworzymy kody promocyjne na naszym Discordzie i mediach społecznościowych.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Czy mogę mieć więcej niż jeden serwer?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Tak, każdy dodatkowy slot na serwer kosztuje 500 coinów. Możesz mieć maksymalnie 5 serwerów na jednym koncie.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 4rem;">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Nie znalazłeś odpowiedzi na swoje pytanie?</p>
+            <a href="mailto:basket5125@gmail.com" class="btn-primary" style="padding: 1rem 2.5rem;">
+                <i class="fas fa-envelope"></i> Skontaktuj się z nami
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: var(--gradient-dark); color: white; text-align: center; padding: 7rem 2rem;">
+        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem;">Gotowy na przygodę?</h2>
+        <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 3rem; opacity: 0.9;">
+            Dołącz do setek zadowolonych graczy i uruchom swój serwer Minecraft już dziś!
+        </p>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://dash.truehosting.net/" class="btn-white" style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
+                <i class="fas fa-rocket"></i> Rozpocznij za darmo
+            </a>
+            <a href="https://discord.gg/cPMxyWvMzJ" class="btn-outline-white" style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
+                <i class="fab fa-discord"></i> Dołącz do Discord
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>TrueHosting.net</h3>
+                <p style="opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.6;">Lider w hosting serwerów Minecraft w Polsce</p>
+                <div class="social-links" style="justify-content: flex-start;">
+                    <a href="https://discord.gg/cPMxyWvMzJ" class="social-link" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC5sZgJO27gyJyM42e5RC1LA" class="social-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://facebook.com" class="social-link" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Usługi</h3>
+                <ul class="footer-links">
+                    <li><a href="#free-server"><i class="fas fa-chevron-right"></i> Darmowy hosting</a></li>
+                    <li><a href="#coins"><i class="fas fa-chevron-right"></i> System coinów</a></li>
+                    <li><a href="#how-it-works"><i class="fas fa-chevron-right"></i> Jak to działa?</a></li>
+                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Funkcje</a></li>
+                    <li><a href="https://stats.uptimerobot.com/F1QfpO5Gl7"><i class="fas fa-chevron-right"></i> Status usług</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Wsparcie</h3>
+                <ul class="footer-links">
+                    <li><a href="#faq"><i class="fas fa-chevron-right"></i> Centrum pomocy</a></li>
+                    <li><a href="mailto:basket5125@gmail.com"><i class="fas fa-chevron-right"></i> Kontakt</a></li>
+                    <li><a href="https://truehosting.net/privacypolicy.html"><i class="fas fa-chevron-right"></i> Polityka prywatności</a></li>
+                    <li><a href="https://truehosting.net/regulamin.html"><i class="fas fa-chevron-right"></i> Regulamin</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dokumentacja</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontakt</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:basket5125@gmail.com"><i class="fas fa-envelope"></i> basket5125@gmail.com</a></li>
+                    <li><a href="#"><i class="fas fa-globe"></i> www.truehosting.net</a></li>
+                    <li style="margin-top: 1.5rem; opacity: 0.8;">
+                        <i class="fas fa-clock"></i> Wsparcie 24/7
+                    </li>
+                    <li style="opacity: 0.8;">
+                        <i class="fas fa-server"></i> Serwery w Polsce
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 TrueHosting.net – Wszystkie prawa zastrzeżone | Hosting serwerów Minecraft</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Nie jesteśmy powiązani z Mojang AB. Minecraft jest znakiem towarowym Mojang AB.</p>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div style="flex: 1;">
+            <h4 style="color: var(--dark-purple); margin-bottom: 0.5rem;">
+                <i class="fas fa-cookie-bite" style="color: var(--primary-purple); margin-right: 0.5rem;"></i>
+                Pliki Cookies
+            </h4>
+            <p style="color: var(--dark-gray); font-size: 0.95rem;">
+                Używamy plików cookies, aby zapewnić Ci najlepsze doświadczenia na naszej stronie. Kontynuując przeglądanie, zgadzasz się na ich użycie.
+            </p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <button onclick="acceptCookies()" class="btn-primary" style="padding: 0.7rem 1.5rem;">
+                Akceptuję
+            </button>
+            <button onclick="rejectCookies()" style="background: transparent; border: 2px solid var(--primary-purple); color: var(--primary-purple); padding: 0.7rem 1.5rem; border-radius: 10px; cursor: pointer; font-weight: 600;">
+                Odrzuć
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Inicjalizacja
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animowane tło gradientowe
+            const background = document.getElementById('background');
+            background.style.animation = 'gradientShift 15s ease infinite';
+            
+            // Pokazanie cookie bannera po 2 sekundach
+            setTimeout(() => {
+                const cookieBanner = document.getElementById('cookieBanner');
+                if (!localStorage.getItem('cookiesAccepted')) {
+                    cookieBanner.classList.add('show');
+                }
+            }, 2000);
+            
+            // Obserwator dla animacji przy scrollowaniu
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        
+                        // Dodanie opóźnienia dla elementów w sekcji
+                        if (entry.target.classList.contains('step-card')) {
+                            const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                            entry.target.style.transitionDelay = `${index * 0.1}s`;
+                        }
+                        
+                        if (entry.target.classList.contains('feature-card')) {
+                            const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                            entry.target.style.transitionDelay = `${index * 0.05}s`;
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            // Obserwuj elementy do animacji
+            document.querySelectorAll('.step-card, .feature-card, .server-plan, .coin-card, .testimonial-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // Płynne przewijanie do sekcji
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#' || href.startsWith('#!')) return;
+                    
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Zamknij mobile menu jeśli otwarte
+                        const mobileMenu = document.getElementById('mainNav');
+                        if (mobileMenu.classList.contains('show')) {
+                            mobileMenu.classList.remove('show');
+                        }
+                    }
+                });
+            });
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mainNav.classList.toggle('show');
+                    mobileMenuBtn.innerHTML = mainNav.classList.contains('show') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+            }
+            
+            // Scroll header effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('mainHeader');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Auto-slide testimonials
+            setInterval(() => {
+                const slider = document.querySelector('.testimonial-slider');
+                if (slider) {
+                    slider.scrollBy({ left: 370, behavior: 'smooth' });
+                    
+                    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
+                        setTimeout(() => {
+                         slider.scrollTo({ left: 0, behavior: 'smooth' });
+                        }, 3000);
+                    }
+                }
+            }, 5000);
+        });
+        
+        // Cookie functions
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').classList.remove('show');
+        }
+        
+        function rejectCookies() {
+            localStorage.setItem('cookiesAccepted', 'false');
+            document.getElementById('cookieBanner').classList.remove('show');
+        }
+        
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+            
+            // Zamknij inne otwarte FAQ
+            document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                if (otherAnswer !== answer && otherAnswer.classList.contains('active')) {
+                    otherAnswer.classList.remove('active');
+                    otherAnswer.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                    otherAnswer.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                }
+            });
+        }
+        
+        // Animacja statystyk
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + '+';
+                }
+            }, 16);
+        }
+        
+        // Uruchom animację liczników gdy sekcja jest widoczna
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.querySelector('.stat-number:nth-child(1)'), 50);
+                    animateCounter(document.querySelector('.community-stat:nth-child(1) h3'), 60);
+                    animateCounter(document.querySelector('.community-stat:nth-child(2) h3'), 12);
+                    animateCounter(document.querySelector('.community-stat:nth-child(3) h3'), 500);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Obserwuj sekcję community
+        const communitySection = document.querySelector('.community-section');
+        if (communitySection) {
+            statsObserver.observe(communitySection);
+        }
+    </script>
+</body>
+</html>
