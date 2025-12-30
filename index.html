@@ -26,6 +26,9 @@
             --gradient-secondary: linear-gradient(135deg, var(--light-purple) 0%, var(--light-pink) 100%);
             --gradient-dark: linear-gradient(135deg, var(--dark-purple) 0%, #BE185D 100%);
             --gradient-light: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            --gradient-success: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+            --gradient-warning: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+            --gradient-danger: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
             --shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
             --shadow-hover: 0 20px 40px rgba(139, 92, 246, 0.25);
             --shadow-large: 0 25px 50px rgba(139, 92, 246, 0.2);
@@ -113,6 +116,24 @@
                 opacity: 1;
                 transform: translateX(0);
             }
+        }
+        
+        @keyframes ringPulse {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.05); }
+            50% { transform: rotate(-5deg) scale(1.05); }
+            75% { transform: rotate(5deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        
+        @keyframes progressFill {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: var(--progress-value, 100); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         /* TŁO Z ANIMOWANYM GRADIENTEM */
@@ -562,6 +583,389 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--dark-purple);
+        }
+        
+        /* MONITORING SECTION - PO SEKCJI JAK TO DZIAŁA */
+        .monitoring-section {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 5rem 2rem;
+            position: relative;
+            border-top: 5px solid;
+            border-image: var(--gradient-main) 1;
+        }
+        
+        .monitoring-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .monitoring-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .monitoring-title {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .monitoring-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+        }
+        
+        .monitoring-title i {
+            font-size: 2.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .monitoring-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            background: rgba(248, 250, 252, 0.7);
+            border: 2px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-online {
+            background: var(--gradient-success);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .status-offline {
+            background: var(--gradient-danger);
+        }
+        
+        .status-warning {
+            background: var(--gradient-warning);
+            animation: pulse 2s infinite;
+        }
+        
+        .monitoring-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .monitoring-card {
+            background: rgba(248, 250, 252, 0.7);
+            border-radius: 25px;
+            padding: 2.5rem 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .monitoring-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .monitoring-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--gradient-main);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-light);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+        }
+        
+        .circular-progress-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+        }
+        
+        .circular-progress {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .progress-bg {
+            fill: none;
+            stroke: rgba(139, 92, 246, 0.1);
+            stroke-width: 10;
+        }
+        
+        .progress-circle {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 2s ease;
+        }
+        
+        .progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark-purple);
+        }
+        
+        .progress-value span {
+            font-size: 1.2rem;
+            color: var(--light-purple);
+        }
+        
+        .card-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark-purple);
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--light-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nodes-details {
+            background: rgba(248, 250, 252, 0.7);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-top: 3rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .nodes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .nodes-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-purple);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .last-update {
+            font-size: 0.9rem;
+            color: var(--light-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .node-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.1);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .node-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .node-card.healthy {
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+        
+        .node-card.unhealthy {
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+        
+        .node-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .node-name {
+            font-weight: 700;
+            color: var(--dark-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .node-status {
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-healthy {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+        
+        .status-unhealthy {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+        
+        .resource-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .resource-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-name {
+            font-size: 0.9rem;
+            color: var(--dark-purple);
+            font-weight: 600;
+        }
+        
+        .resource-value {
+            font-size: 0.9rem;
+            color: var(--light-purple);
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1.5s ease;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(139, 92, 246, 0.1);
+            border-top: 4px solid var(--primary-purple);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+            margin-bottom: 1.5rem;
+        }
+        
+        .refresh-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--white);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            color: var(--primary-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 5;
+        }
+        
+        .refresh-btn:hover {
+            transform: rotate(180deg);
+            background: var(--gradient-main);
+            color: white;
+            border-color: transparent;
         }
         
         /* FEATURES SECTION */
@@ -1046,6 +1450,10 @@
             .server-plan.popular {
                 transform: none;
             }
+            
+            .monitoring-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
@@ -1097,6 +1505,31 @@
                 flex-direction: column;
                 text-align: center;
             }
+            
+            .monitoring-section {
+                padding: 3rem 1rem;
+            }
+            
+            .monitoring-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nodes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .monitoring-header {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .refresh-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 0 auto;
+            }
         }
         
         /* CUSTOM SCROLLBAR */
@@ -1128,7 +1561,7 @@
         <div class="shape shape-3"></div>
     </div>
 
-           <!-- HEADER -->
+    <!-- HEADER -->
     <header id="mainHeader">
         <div class="logo-container" href="#">
             <img src="https://truehosting.net/logo.png" alt="Logo TrueHosting">
@@ -1143,8 +1576,9 @@
         </button>
         
         <nav id="mainNav">
-            <a href="#features"><i class="fas fa-star"></i> Funkcje</a>
             <a href="#how-it-works"><i class="fas fa-play-circle"></i> Jak to działa?</a>
+            <a href="#monitoring"><i class="fas fa-chart-line"></i> Statystyki</a>
+            <a href="#features"><i class="fas fa-star"></i> Funkcje</a>
             <a href="#free-server"><i class="fas fa-server"></i> Darmowy Serwer</a>
             <a href="#coins"><i class="fas fa-coins"></i> Coiny</a>
             <a href="#testimonials"><i class="fas fa-comments"></i> Opinie</a>
@@ -1236,6 +1670,103 @@
             </div>
         </div>
     </section>
+
+
+<!-- MONITORING SECTION - PO SEKCJI JAK TO DZIAŁA -->
+<section class="monitoring-section" id="monitoring">
+    <div class="monitoring-container">
+        <div class="monitoring-header">
+            <div class="monitoring-title">
+                <i class="fas fa-chart-line"></i>
+                <h2>Statystyki Systemu</h2>
+            </div>
+            <div class="monitoring-controls">
+            </div>
+        </div>
+        
+        <div class="monitoring-stats-grid">
+            <!-- Karta 1: Serwery Minecraft -->
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <div class="card-title">Uruchomione serwery</div>
+                    <div class="card-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                </div>
+                <div class="circular-progress-container">
+                    <svg class="circular-progress" width="180" height="180">
+                        <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
+                        <circle class="progress-circle" id="serverProgress" cx="90" cy="90" r="80" stroke="url(#serverGradient)"></circle>
+                        <defs>
+                            <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#8B5CF6" />
+                                <stop offset="100%" stop-color="#EC4899" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="progress-value" id="serverPercentage">0<span>%</span></div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="activeServers">0</div>
+                        <div class="stat-label">Aktywne</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalServers">0</div>
+                        <div class="stat-label">Wszystkie</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="inactiveServers">0</div>
+                        <div class="stat-label">Nieaktywne</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Karta 2: Wykorzystanie Zasobów -->
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <div class="card-title">Wykorzystanie Zasobów</div>
+                    <div class="card-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                </div>
+                <div class="circular-progress-container">
+                    <svg class="circular-progress" width="180" height="180">
+                        <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
+                        <circle class="progress-circle" id="ramProgress" cx="90" cy="90" r="80" stroke="url(#ramGradient)"></circle>
+                        <defs>
+                            <linearGradient id="ramGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#8B5CF6" />
+                                <stop offset="100%" stop-color="#EC4899" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="progress-value" id="ramPercentage">0<span>%</span></div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="avgRamNode">0%</div>
+                        <div class="stat-label">Średnio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="minRam">0%</div>
+                        <div class="stat-label">Min</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="maxRam">0%</div>
+                        <div class="stat-label">Max</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Informacja o aktualizacji -->
+        <div class="last-update">
+            <i class="fas fa-clock"></i>
+            <span>Ostatnia aktualizacja: <span id="updateTime">--:--:--</span></span>
+        </div>
+    </div>
+</section>
 
     <!-- FEATURES -->
     <section id="features" style="background: var(--white);">
@@ -1349,6 +1880,7 @@
                     Rozpocznij za darmo
                 </a>
             </div>
+        </div>
         
         <div style="text-align: center; margin-top: 3rem;">
             <p style="font-size: 1.1rem; color: var(--dark-gray); margin-bottom: 1rem;">Wszystkie plany obejmują pełny dostęp do panelu, możliwość wgrywania własnych plików i 99% gwarancji czasu działania.</p>
@@ -1430,7 +1962,7 @@
         </div>
     </section>
 
-      <!-- OPINIE -->
+    <!-- OPINIE -->
     <section id="testimonials" style="background: var(--lighter-gray);">
         <div class="section-header">
             <h2 class="section-title">Co mówią użytkownicy Hostingu</h2>
@@ -1714,8 +2246,202 @@
         </div>
     </div>
 
+    <!-- JavaScript dla monitoringu -->
     <script>
-        // Inicjalizacja
+// Konfiguracja API
+const API_URL = 'http://u-api.truehosting.net/stats';
+const UPDATE_INTERVAL = 30000; // 30 sekund - poprawka z 3000 na 30000
+
+// Stan aplikacji
+let monitoringData = null;
+let updateInterval = null;
+
+// Funkcje pomocnicze
+function updateCircleProgress(circleId, percentage) {
+    const circle = document.getElementById(circleId);
+    if (!circle) return;
+    
+    const radius = 80;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (percentage / 100) * circumference;
+    
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = offset;
+    
+    // Ustaw kolor na podstawie wartości
+    if (percentage >= 90) {
+        circle.style.stroke = '#EF4444'; // czerwony
+    } else if (percentage >= 75) {
+        circle.style.stroke = '#F59E0B'; // żółty
+    } else if (percentage >= 50) {
+        circle.style.stroke = '#8B5CF6'; // fioletowy (domyślny)
+    } else {
+        circle.style.stroke = '#10B981'; // zielony
+    }
+}
+
+function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function formatTime(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('pl-PL');
+}
+
+function updateSystemStatus(serverStats, nodeStats) {
+    const statusElement = document.getElementById('systemStatusText');
+    const indicator = document.querySelector('.status-indicator');
+    
+    if (!statusElement || !indicator) return;
+    
+    // Prostsze obliczanie statusu
+    const serverPercent = serverStats?.running_percentage || 0;
+    const nodeAvailability = nodeStats?.availability_percentage || 0;
+    
+    if (serverPercent >= 70 && nodeAvailability >= 80) {
+        statusElement.textContent = 'System online';
+        statusElement.style.color = '#10B981';
+        indicator.className = 'status-indicator status-online';
+    } else if (serverPercent >= 50 && nodeAvailability >= 60) {
+        statusElement.textContent = 'System monitoring';
+        statusElement.style.color = '#F59E0B';
+        indicator.className = 'status-indicator status-warning';
+    } else {
+        statusElement.textContent = 'System warning';
+        statusElement.style.color = '#EF4444';
+        indicator.className = 'status-indicator status-offline';
+    }
+}
+
+// Pobieranie i aktualizacja danych
+async function fetchMonitoringData() {
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Błąd pobierania danych:', error);
+        return null;
+    }
+}
+
+async function updateMonitoringUI() {
+    try {
+        const data = await fetchMonitoringData();
+        
+        if (!data) {
+            throw new Error('Nie udało się pobrać danych');
+        }
+        
+        monitoringData = data;
+        
+        // Aktualizuj dane serwerów
+        const servers = data.servers || {};
+        const serverPercentage = servers.running_percentage || 0;
+        
+        document.getElementById('serverPercentage').innerHTML = `${serverPercentage.toFixed(1)}<span>%</span>`;
+        document.getElementById('activeServers').textContent = formatNumber(servers.active || 0);
+        document.getElementById('totalServers').textContent = formatNumber(servers.total || 0);
+        document.getElementById('inactiveServers').textContent = formatNumber((servers.total || 0) - (servers.active || 0));
+        updateCircleProgress('serverProgress', serverPercentage);
+        
+        // Aktualizuj dane RAM
+        const nodes = data.nodes || {};
+        const ramPercentage = nodes.ram_usage_percentage || nodes.ram_usage_avg_per_node || 0;
+        
+        document.getElementById('ramPercentage').innerHTML = `${ramPercentage.toFixed(1)}<span>%</span>`;
+        document.getElementById('avgRamNode').textContent = `${(nodes.ram_usage_avg_per_node || 0).toFixed(1)}%`;
+        document.getElementById('minRam').textContent = `${(nodes.ram_min_per_node || 0).toFixed(1)}%`;
+        document.getElementById('maxRam').textContent = `${(nodes.ram_max_per_node || 0).toFixed(1)}%`;
+        updateCircleProgress('ramProgress', ramPercentage);
+        
+        // Aktualizuj status systemu
+        updateSystemStatus(servers, nodes);
+        
+        // Aktualizuj czas ostatniej aktualizacji
+        const now = new Date();
+        document.getElementById('updateTime').textContent = formatTime(now);
+        
+    } catch (error) {
+        console.error('Błąd aktualizacji UI:', error);
+        document.getElementById('systemStatusText').textContent = 'Błąd ładowania';
+        document.getElementById('systemStatusText').style.color = '#EF4444';
+        
+        // Spróbuj ponownie za 10 sekund
+        setTimeout(updateMonitoringUI, 10000);
+    }
+}
+
+// Inicjalizacja monitoringu
+document.addEventListener('DOMContentLoaded', function() {
+    // Pierwsze ładowanie danych
+    updateMonitoringUI();
+    
+    // Ustawienie cyklicznej aktualizacji
+    updateInterval = setInterval(updateMonitoringUI, UPDATE_INTERVAL);
+    
+    // Obsługa ręcznego odświeżenia
+    const refreshBtn = document.getElementById('refreshStats');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', function() {
+            clearInterval(updateInterval);
+            
+            // Animacja przycisku odświeżania
+            this.style.animation = 'rotate 0.5s linear';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 500);
+            
+            updateMonitoringUI();
+            updateInterval = setInterval(updateMonitoringUI, UPDATE_INTERVAL);
+        });
+    }
+    
+    // Inicjalizacja animacji pasków
+    const progressCircles = ['serverProgress', 'ramProgress'];
+    progressCircles.forEach(circleId => {
+        const circle = document.getElementById(circleId);
+        if (circle) {
+            circle.style.strokeDasharray = '502.4 502.4';
+            circle.style.strokeDashoffset = '502.4';
+        }
+    });
+});
+
+// Dodaj styl dla animacji obrotu
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .monitoring-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .last-update {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--light-purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+`;
+document.head.appendChild(style);
+    </script>
+    
+    <!-- RESZTA SKRYPTÓW -->
+    <script>
+        // Reszta kodu JavaScript
         document.addEventListener('DOMContentLoaded', function() {
             // Animowane tło gradientowe
             const background = document.getElementById('background');
@@ -1751,12 +2477,17 @@
                             const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
                             entry.target.style.transitionDelay = `${index * 0.05}s`;
                         }
+                        
+                        if (entry.target.classList.contains('monitoring-card')) {
+                            const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                            entry.target.style.transitionDelay = `${index * 0.1}s`;
+                        }
                     }
                 });
             }, observerOptions);
             
             // Obserwuj elementy do animacji
-            document.querySelectorAll('.step-card, .feature-card, .server-plan, .coin-card, .testimonial-card').forEach(el => {
+            document.querySelectorAll('.step-card, .feature-card, .server-plan, .coin-card, .testimonial-card, .monitoring-card').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
                 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -1819,7 +2550,7 @@
                     
                     if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 100) {
                         setTimeout(() => {
-                         slider.scrollTo({ left: 0, behavior: 'smooth' });
+                            slider.scrollTo({ left: 0, behavior: 'smooth' });
                         }, 3000);
                     }
                 }
