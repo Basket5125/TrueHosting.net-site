@@ -59,99 +59,98 @@
     </section>
 
     <!-- MONITORING SECTION -->
-    <section class="monitoring-section">
-        <div class="monitoring-container">
-            <div class="monitoring-header">
-                <div class="monitoring-title">
-                    <i class="fas fa-chart-line"></i>
-                    <h2>Statystyki Systemu</h2>
-                </div>
-                <div class="monitoring-controls">
-                    <div class="last-update">
-                        <i class="fas fa-clock"></i>
-                        <span>Ostatnia aktualizacja: <span id="updateTime">--:--:--</span></span>
+    <div class="monitoring-container">
+        <div class="monitoring-header">
+            <div class="monitoring-title">
+                <i class="fas fa-chart-line"></i>
+                <h2>Statystyki Systemu</h2>
+            </div>
+            <div class="monitoring-controls">
+            </div>
+        </div>
+        
+        <div class="monitoring-stats-grid">
+            <!-- Karta 1: Serwery Minecraft -->
+            <div class="monitoring-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="card-header">
+                    <div class="card-title">Uruchomione serwery</div>
+                    <div class="card-icon">
+                        <i class="fas fa-gamepad"></i>
                     </div>
-                    <button id="refreshStats" class="refresh-btn">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
+                </div>
+                <div class="circular-progress-container">
+                    <svg class="circular-progress" width="180" height="180">
+                        <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
+                        <circle class="progress-circle" id="serverProgress" cx="90" cy="90" r="80" stroke="url(#serverGradient)" style="stroke-dasharray: 502.655, 502.655; stroke-dashoffset: 502.655; stroke: rgb(16, 185, 129);"></circle>
+                        <defs>
+                            <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#8B5CF6"></stop>
+                                <stop offset="100%" stop-color="#EC4899"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="progress-value" id="serverPercentage">0.0<span>%</span></div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="activeServers">0</div>
+                        <div class="stat-label">Aktywne</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalServers">134</div>
+                        <div class="stat-label">Wszystkie</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="inactiveServers">134</div>
+                        <div class="stat-label">Nieaktywne</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="monitoring-stats-grid">
-                <!-- Karta 1: Serwery Minecraft -->
-                <div class="monitoring-card">
-                    <div class="card-header">
-                        <div class="card-title">Uruchomione serwery</div>
-                        <div class="card-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                    </div>
-                    <div class="circular-progress-container">
-                        <svg class="circular-progress" width="180" height="180">
-                            <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
-                            <circle class="progress-circle" id="serverProgress" cx="90" cy="90" r="80" stroke="url(#serverGradient)"></circle>
-                            <defs>
-                                <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#8B5CF6" />
-                                    <stop offset="100%" stop-color="#EC4899" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <div class="progress-value" id="serverPercentage">0<span>%</span></div>
-                    </div>
-                    <div class="card-stats">
-                        <div class="stat-item">
-                            <div class="stat-value" id="activeServers">0</div>
-                            <div class="stat-label">Aktywne</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="totalServers">0</div>
-                            <div class="stat-label">Wszystkie</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="inactiveServers">0</div>
-                            <div class="stat-label">Nieaktywne</div>
-                        </div>
+            <!-- Karta 2: Wykorzystanie Zasobów -->
+            <div class="monitoring-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.6s 0.1s, transform 0.6s;">
+                <div class="card-header">
+                    <div class="card-title">Wykorzystanie Zasobów</div>
+                    <div class="card-icon">
+                        <i class="fas fa-memory"></i>
                     </div>
                 </div>
-                
-                <!-- Karta 2: Wykorzystanie Zasobów -->
-                <div class="monitoring-card">
-                    <div class="card-header">
-                        <div class="card-title">Wykorzystanie Zasobów</div>
-                        <div class="card-icon">
-                            <i class="fas fa-memory"></i>
-                        </div>
+                <div class="circular-progress-container">
+                    <svg class="circular-progress" width="180" height="180">
+                        <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
+                        <circle class="progress-circle" id="ramProgress" cx="90" cy="90" r="80" stroke="url(#ramGradient)" style="stroke-dasharray: 502.655, 502.655; stroke-dashoffset: 502.655; stroke: rgb(16, 185, 129);"></circle>
+                        <defs>
+                            <linearGradient id="ramGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#8B5CF6"></stop>
+                                <stop offset="100%" stop-color="#EC4899"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="progress-value" id="ramPercentage">0.0<span>%</span></div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="avgRamNode">0.0%</div>
+                        <div class="stat-label">Średnio</div>
                     </div>
-                    <div class="circular-progress-container">
-                        <svg class="circular-progress" width="180" height="180">
-                            <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
-                            <circle class="progress-circle" id="ramProgress" cx="90" cy="90" r="80" stroke="url(#ramGradient)"></circle>
-                            <defs>
-                                <linearGradient id="ramGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#8B5CF6" />
-                                    <stop offset="100%" stop-color="#EC4899" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <div class="progress-value" id="ramPercentage">0<span>%</span></div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="minRam">0.0%</div>
+                        <div class="stat-label">Min</div>
                     </div>
-                    <div class="card-stats">
-                        <div class="stat-item">
-                            <div class="stat-value" id="avgRamNode">0%</div>
-                            <div class="stat-label">Średnio</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="minRam">0%</div>
-                            <div class="stat-label">Min</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="maxRam">0%</div>
-                            <div class="stat-label">Max</div>
-                        </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="maxRam">0.0%</div>
+                        <div class="stat-label">Max</div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Informacja o aktualizacji -->
+        <div class="last-update">
+            <i class="fas fa-clock"></i>
+            <span>Ostatnia aktualizacja: <span id="updateTime">21:02:26</span></span>
+        </div>
+    </div>
             
             <div class="additional-info">
                 <h3><i class="fas fa-info-circle"></i> Informacje o statystykach</h3>
