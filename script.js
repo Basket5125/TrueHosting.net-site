@@ -173,3 +173,19 @@ if (document.readyState === 'loading') {
 } else {
     initAnimations();
 }
+// Funkcja dla animacji link-cards
+function initLinkCardsAnimation() {
+    const linkCards = document.querySelectorAll('.link-card');
+    linkCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('animated');
+        }, index * 100);
+    });
+}
+
+// Wywołaj po załadowaniu strony
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLinkCardsAnimation);
+} else {
+    initLinkCardsAnimation();
+}
