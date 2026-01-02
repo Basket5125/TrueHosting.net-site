@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statystyki - TrueHosting.net</title>
+    <link rel="icon" type="image/x-icon" href="https://truehosting.net/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="mainHeader">
+        <a href="index.html" class="logo-container">
+            <img src="https://truehosting.net/logo.png" alt="Logo TrueHosting">
+            <div class="logo-text">
+                <h1>TrueHosting.net</h1>
+                <span>Profesjonalny Hosting serwerów Minecraft oraz aplikacji lub botów w node js</span>
+            </div>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav id="mainNav">
+            <a href="index.html"><i class="fas fa-home"></i> Strona Główna</a>
+            <a href="jak-to-dziala.html"><i class="fas fa-play-circle"></i> Jak to działa?</a>
+            <a href="statystyki.html" class="active"><i class="fas fa-chart-line"></i> Statystyki</a>
+            <a href="funkcje.html"><i class="fas fa-star"></i> Funkcje</a>
+            <a href="darmowy-serwer.html"><i class="fas fa-server"></i> Darmowy Serwer</a>
+            <a href="coiny.html"><i class="fas fa-coins"></i> Coiny</a>
+            <a href="opinie.html"><i class="fas fa-comments"></i> Opinie</a>
+            <a href="spolecznosc.html"><i class="fas fa-users"></i> Społeczność</a>
+            <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+        </nav>
+        
+        <div class="nav-cta">
+            <a href="https://panel.truehosting.net/" class="btn-primary pulse">
+                <i class="fa-solid fa-right-to-bracket"></i> Otwórz Panel
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO BREADCRUMB -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Statystyki Systemu</h1>
+            <p>Monitoruj stan naszych serwerów w czasie rzeczywistym</p>
+            <div class="breadcrumb">
+                <a href="index.html">Strona główna</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Statystyki</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MONITORING SECTION -->
+    <section class="monitoring-section">
+        <div class="monitoring-container">
+            <div class="monitoring-header">
+                <div class="monitoring-title">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Statystyki Systemu</h2>
+                </div>
+                <div class="monitoring-controls">
+                    <div class="last-update">
+                        <i class="fas fa-clock"></i>
+                        <span>Ostatnia aktualizacja: <span id="updateTime">--:--:--</span></span>
+                    </div>
+                    <button id="refreshStats" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="monitoring-stats-grid">
+                <!-- Karta 1: Serwery Minecraft -->
+                <div class="monitoring-card">
+                    <div class="card-header">
+                        <div class="card-title">Uruchomione serwery</div>
+                        <div class="card-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                    </div>
+                    <div class="circular-progress-container">
+                        <svg class="circular-progress" width="180" height="180">
+                            <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
+                            <circle class="progress-circle" id="serverProgress" cx="90" cy="90" r="80" stroke="url(#serverGradient)"></circle>
+                            <defs>
+                                <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#8B5CF6" />
+                                    <stop offset="100%" stop-color="#EC4899" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="progress-value" id="serverPercentage">0<span>%</span></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="activeServers">0</div>
+                            <div class="stat-label">Aktywne</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalServers">0</div>
+                            <div class="stat-label">Wszystkie</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="inactiveServers">0</div>
+                            <div class="stat-label">Nieaktywne</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Karta 2: Wykorzystanie Zasobów -->
+                <div class="monitoring-card">
+                    <div class="card-header">
+                        <div class="card-title">Wykorzystanie Zasobów</div>
+                        <div class="card-icon">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                    </div>
+                    <div class="circular-progress-container">
+                        <svg class="circular-progress" width="180" height="180">
+                            <circle class="progress-bg" cx="90" cy="90" r="80"></circle>
+                            <circle class="progress-circle" id="ramProgress" cx="90" cy="90" r="80" stroke="url(#ramGradient)"></circle>
+                            <defs>
+                                <linearGradient id="ramGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#8B5CF6" />
+                                    <stop offset="100%" stop-color="#EC4899" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="progress-value" id="ramPercentage">0<span>%</span></div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="avgRamNode">0%</div>
+                            <div class="stat-label">Średnio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="minRam">0%</div>
+                            <div class="stat-label">Min</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="maxRam">0%</div>
+                            <div class="stat-label">Max</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="additional-info">
+                <h3><i class="fas fa-info-circle"></i> Informacje o statystykach</h3>
+                <p>Dane są aktualizowane automatycznie co 30 sekund. Wszystkie wartości przedstawiają stan systemu w czasie rzeczywistym.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <!-- Takie samo jak w index.html -->
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="monitoring.js"></script>
+</body>
+</html>
