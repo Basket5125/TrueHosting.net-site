@@ -1496,3 +1496,70 @@ footer::before {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--dark-purple);
 }
+/* Dodatkowe style dla nowych elementów */
+.plan-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-main);
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+
+.server-plan.popular {
+    border-color: var(--primary-purple);
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.server-plan.popular:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.coin-value {
+    display: inline-block;
+    background: var(--gradient-light);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    color: var(--dark-purple);
+    margin-top: 1rem;
+}
+
+.testimonial-date {
+    font-size: 0.85rem;
+    color: var(--light-purple);
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Styl dla karty w opiniach */
+.testimonial-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 2.5rem;
+    padding: 2rem 1rem;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.testimonial-slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* Animacje dla link-cards */
+.link-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.link-card.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
